@@ -72,7 +72,7 @@ pygame.init()
 pygame.mixer.init()  # For sound
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Hyeonjoo Jeong")
+pygame.display.set_caption("Flying Cat - Hyeonjoo")
 
 clock = pygame.time.Clock()  # For syncing the FPS
 
@@ -133,6 +133,7 @@ GO_SOUND = get_sound('go.wav', 0.2)
 
 ITEM_SOUND = get_sound('Meow.ogg', 0.2)
 SHOOTING_SOUND = get_sound('pew.wav', 0.05)
+BUTTERFLY_SOUND = get_sound('butterfly.wav', 0.1)
 
 expl_sounds = [get_sound('expl3.wav', 0.05), get_sound('expl6.wav', 0.05)]
 
@@ -385,7 +386,7 @@ class Player(pygame.sprite.Sprite):
         # 이미지
         self.image = PLAYER_IMG
         self.rect = self.image.get_rect()
-        self.radius = 20
+        self.radius = self.rect.width // 2
         self.rect.centerx = WIDTH / 2
         self.rect.bottom = HEIGHT - 10
         
@@ -556,7 +557,7 @@ def died():
     y = HEIGHT // 2
     font_size = 30
     
-    draw_text(screen, 'YOU DIED', 60, x, y-100, RED)
+    draw_text(screen, 'GAME OVER', 60, x, y-100, RED)
     draw_text(screen, '[ENTER] to main', font_size, x, y+50, WHITE)
     draw_text(screen, '[ESC] to quit', font_size, x, y+100, WHITE)
     
@@ -701,6 +702,7 @@ while running:
         
     collisions = pygame.sprite.groupcollide(butterflies, bullets, False, True)
     for collision in collisions:
+        BUTTERFLY_SOUND.play()
         is_alive = collision.change_color()
 
         if not is_alive:
