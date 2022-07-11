@@ -19,7 +19,7 @@
 총 목숨은 3개이고, 목숨을 모두 소진하면 게임이 종료된다.
 
 ### 플레이 영상
-![FlyingCat play](./.github/img/game-play-video.gif)
+<img src = "./.github/img/game-play-video.gif" width="30%">
 
 
 ## About
